@@ -22,7 +22,7 @@ function DropdownMenu({setSearch}) {
     
 
     return (
-        <div className="relative inline-block text-left">
+        <div className="relative inline-block text-center  transition-all duration-300">
             <button
                 className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 focus:outline-none"
                 onClick={() => setIsOpen(!isOpen)}
@@ -30,7 +30,7 @@ function DropdownMenu({setSearch}) {
                 Categories
             </button>
             {isOpen && (
-                <div className="absolute mt-2 w-48 bg-white border border-gray-300 rounded-lg shadow-lg">
+                <div className="absolute mt-2 w-48 bg-white border border-gray-300 rounded-lg shadow-lg right-0.5">
                     {links.map((link, index) => (
                         <Link
                             key={index}

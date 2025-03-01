@@ -47,31 +47,35 @@ function Coupondescription() {
   }
 
   return (
-    <div className="flex flex-col md:flex-row items-center gap-8 p-6 max-w-5xl mx-auto bg-gradient-to-r from-gray-100 to-gray-200 shadow-lg rounded-2xl transition-all duration-500 hover:shadow-2xl hover:scale-[1.02]">
+    <div className="flex flex-col md:flex-row items-center gap-8 p-6 m-3 max-w-5xl mx-auto bg-gradient-to-r from-blue-100 to-purple-200 shadow-2xl rounded-2xl transition-all duration-500 hover:shadow-3xl hover:scale-[1.02]">
       {/* Image Section */}
       <div className="w-full md:w-1/2 relative">
         <img
           src={coupondetails.imgSrc}
           alt={coupondetails.imgAlt}
-          className="w-full h-72 object-cover rounded-xl shadow-md transition-all duration-500 hover:scale-105"
+          className="w-full h-72 object-cover rounded-xl shadow-lg transition-all duration-500 hover:scale-110 hover:shadow-2xl"
         />
-        <span className="absolute top-3 left-3 bg-blue-600 text-white px-3 py-1 text-xs rounded-lg shadow-lg">
+        <span className="absolute top-3 left-3 bg-pink-600 text-white px-4 py-2 text-sm rounded-lg shadow-lg uppercase font-semibold">
           {coupondetails.category}
         </span>
       </div>
 
       {/* Description Section */}
       <div className="w-full md:w-1/2 space-y-5">
-        <h1 className="text-3xl font-bold text-gray-900">{coupondetails.name}</h1>
-        <p className="text-gray-600 leading-relaxed">{coupondetails.description.slice(0,250)}</p>
+        <h1 className="text-4xl font-extrabold text-gray-900 leading-tight drop-shadow-md">
+          {coupondetails.name}
+        </h1>
+        <p className="text-gray-700 leading-relaxed text-lg italic">
+          {coupondetails.description.slice(0, 250)}
+        </p>
 
         {/* Get Coupon Button */}
-        <div className="flex justify-start">
+        <div className="flex justify-center">
           <a
             href={coupondetails.udemyLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-6 py-3 bg-blue-500 text-white text-lg font-semibold rounded-lg shadow-md transition-all duration-500 hover:bg-blue-700 hover:scale-110 hover:shadow-xl"
+            className="px-8 py-4 bg-gradient-to-r from-blue-500 to-indigo-500 text-white text-lg font-bold rounded-xl shadow-lg transition-all duration-500 hover:from-indigo-500 hover:to-blue-500 hover:scale-110 hover:shadow-2xl"
           >
             Get Coupon
           </a>

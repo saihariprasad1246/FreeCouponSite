@@ -19,11 +19,11 @@ function CategoryCoupons() {
 
   const fetchCoupons = async () => {
     try {
-      console.log(category)
+      //console.log(category)
       const response = await axios.get(`${Backend_Url}/category/${category}/?pageNo=${searchParams.get('pageNo') ||  1}`); // Replace with your API URL
       setCoupons(response.data.data);
       setTotalCoupons(response.data.totalCoupons || 0);
-      console.log(response.data)
+      //console.log(response.data)
     } catch (err) {
       setError("Failed to load coupons");
     } finally {

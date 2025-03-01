@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useSearchParams, useLocation } from "react-router-dom";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
-const Pagination = ({ totalCoupons }) => {
+function Pagination({ totalCoupons }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchParams, setSearchParams] = useSearchParams();
   const location = useLocation().pathname;
@@ -20,13 +20,13 @@ const Pagination = ({ totalCoupons }) => {
   };
 
   return (
-    <div className="flex items-center justify-center space-x-2 mt-6">
+    <div className="flex items-center justify-center space-x-3 py-4">
       {/* Previous Button */}
       <button
         onClick={() => handlePageChange(currentPage - 1)}
         disabled={currentPage === 1}
         className={`px-4 py-2 rounded-lg transition-all duration-300 flex items-center 
-          ${currentPage === 1 ? "bg-gray-400 cursor-not-allowed opacity-50" : "bg-blue-500 hover:bg-blue-600 text-white shadow-md"}`}
+          ${currentPage === 1 ? "bg-gray-400 cursor-not-allowed opacity-50" : "bg-gradient-to-r from-pink-500 to-purple-500 text-white hover:scale-110 shadow-lg"}`}
       >
         <FaChevronLeft className="mr-1" /> Prev
       </button>
@@ -37,8 +37,8 @@ const Pagination = ({ totalCoupons }) => {
           <button
             key={page}
             onClick={() => handlePageChange(page)}
-            className={`px-4 py-2 rounded-lg transition-all duration-300 text-gray-800 font-medium shadow-md 
-              ${currentPage === page ? "bg-blue-500 text-white scale-110" : "bg-gray-200 hover:bg-gray-300"}`}
+            className={`px-4 py-2 rounded-lg transition-all duration-300 font-medium shadow-md 
+              ${currentPage === page ? "bg-yellow-400 text-gray-900 scale-110" : "bg-gray-200 hover:bg-gray-300 text-gray-800"}`}
           >
             {page}
           </button>
@@ -50,12 +50,12 @@ const Pagination = ({ totalCoupons }) => {
         onClick={() => handlePageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
         className={`px-4 py-2 rounded-lg transition-all duration-300 flex items-center 
-          ${currentPage === totalPages ? "bg-gray-400 cursor-not-allowed opacity-50" : "bg-blue-500 hover:bg-blue-600 text-white shadow-md"}`}
+          ${currentPage === totalPages ? "bg-gray-400 cursor-not-allowed opacity-50" : "bg-gradient-to-r from-pink-500 to-purple-500 text-white hover:scale-110 shadow-lg"}`}
       >
         Next <FaChevronRight className="ml-1" />
       </button>
     </div>
   );
-};
+}
 
 export default Pagination;

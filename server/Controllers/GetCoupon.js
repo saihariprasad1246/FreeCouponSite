@@ -2,6 +2,14 @@
 import Coupon from "../Model/CouponSchema.js"
 
 
+
+function getIndexes(pageNo,limit){
+    const endIndex=(pageNo*limit)
+    const startIndex = (pageNo-1)*limit
+    return [startIndex,endIndex]
+    }
+
+
 //import Coupon from "../Model/CouponSchema.js";  // Ensure correct import
 
 export const fetchHomeCoupons = async (req, res) => {
@@ -33,9 +41,7 @@ export const fetchHomeCoupons = async (req, res) => {
         }
         console.log(pageNo,search)
         const limit = 10; // Define the number of coupons to return per page
-        const endIndex=parseInt(pageNo)*limit-1
-        const startIndex=endIndex-limit+1
-        console.log(startIndex,endIndex)
+        const [startIndex,endIndex]=getIndexes(parseInt(pageNo),limit)
 
         const searchFilter = search
             ? {
@@ -53,22 +59,24 @@ export const fetchHomeCoupons = async (req, res) => {
               // Fixed query logic
 
               console.log(coupons)
-        if(coupons.length<startIndex){
-           return  res.status(200).json({
-            status:"failed",
-            message:"No more coupons to display",
-           })
-        }
-
-
-
-        
-       return  res.status(200).json({
-        status:"success",
-        length:coupons.length,
-        data:coupons.slice(startIndex,endIndex),
-        message:"Get Coupons Succesfully"
-       });
+              if(coupons.length<startIndex || coupons.length==0){
+                return  res.status(200).json({
+                 status:"failed",
+                 message:"No more coupons to display",
+                 data:[],
+                 length:0
+                })
+             }
+     
+     
+     
+      
+            return  res.status(200).json({
+             status:"success",
+             length:coupons.length,
+             data:coupons.slice(startIndex,endIndex),
+             message:"Get Coupons Succesfully"
+            });
     } catch (err) {
         console.error("Error fetching coupons:", err.message); // Improved error logging
         res.status(500).json({
@@ -139,21 +147,19 @@ export const fetchCategoryCoupons=async(req,res)=>{
 
 
         const limit = 10; // Define the number of coupons to return per page
-        const endIndex=parseInt(pageNo)*limit-1
-        const startIndex=endIndex-limit+1
-        console.log(startIndex,endIndex)
+        const [startIndex,endIndex]=getIndexs(parseInt(pageNo),limit)
 
-       
+
         const coupons = await Coupon.find(
-            { category:{$eq:categoryName} }, 
+            { 'category':categoryName }, 
             { name: 1, category: 1, imgSrc: 1, imgAlt: 1, description: 1 }
         )
         .sort({ createdAt: -1 }) 
-        
+
         //const coupons = await Coupon.find({category},{name:1,category:1,imgSrc:1,imgAlt:1,description:1}).sort({ createdAt: -1 }); // Fixed query logic
 
               console.log(coupons)
-        if(coupons.length<startIndex){
+        if(coupons.length<startIndex || Coupons.length==0){
            return  res.status(200).json({
             status:"failed",
             message:"No more coupons to display",
@@ -163,15 +169,14 @@ export const fetchCategoryCoupons=async(req,res)=>{
         }
 
 
-
+        return  res.status(200).json({
+            status:"success",
+            length:coupons.length,
+            data:coupons.slice(startIndex,endIndex),
+            message:"Get Coupons Succesfully"
+           });
+    
         
-       return  res.status(200).json({
-        status:"success",
-        length:coupons.length,
-        data:coupons.slice(startIndex,endIndex),
-        message:"Get Coupons Succesfully"
-       });
-
 
     }catch(err){
         console.error("Error fetching coupons:", err.message); // Improved error logging

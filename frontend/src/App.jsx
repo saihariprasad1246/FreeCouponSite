@@ -40,10 +40,11 @@ import PageNotFound from "./Pages/PageNotFound";
 import CategoryCoupons from "./Pages/CategoryCoupons";
 import Home from "./Pages/Home";
 import Navbar from "./Components/Navbar";
+import Footer from "./Components/Footer";
 
 function App() {
   return (
-    <div className="relative min-h-screen bg-white-900 text-white">
+    <div className="relative min-h-screen bg-white">
       {/* Navbar Hovering Over Content */}
       <div className="absolute w-full z-50">
         <Navbar />
@@ -58,6 +59,7 @@ function App() {
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </div>
+      <Footer />
     </div>
   );
 }
