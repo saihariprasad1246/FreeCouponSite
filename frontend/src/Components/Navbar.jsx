@@ -36,6 +36,7 @@ function Navbar() {
         </a>
 
         {/* Search Form */}
+        <div className="relative">
         <form
           onSubmit={handleSubmit}
           className="flex items-center bg-white rounded-full overflow-hidden shadow-md focus-within:ring-2 focus-within:ring-yellow-400"
@@ -68,7 +69,9 @@ function Navbar() {
         </form>
 
         {/* Error Message */}
-        {error && <div className="text-red-500 text-sm">{error}</div>}
+        {error && <div className="text-red-500 text-sm absolute top-2">{error}</div>}
+
+        </div>
 
         {/* Dropdown Menu */}
         <DropdownMenu setSearch={setSearch} />
