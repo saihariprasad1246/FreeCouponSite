@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { RxCross2 } from "react-icons/rx";
 import { FiSearch } from "react-icons/fi";
 import DropdownMenu from "./Dropdown";
@@ -8,7 +8,7 @@ function Navbar() {
   const [search, setSearch] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  const [searchParams, setSearchParams] = useSearchParams();
+  //const [searchParams, setSearchParams] = useSearchParams();
 
   function isAlphabetOnly(str) {
     return /^[A-Za-z]+$/.test(str);
@@ -53,7 +53,8 @@ function Navbar() {
               type="button"
               onClick={() => {
                 setSearch("");
-                navigate("/");
+                setError("")
+                
               }}
               className="px-2 text-gray-600 hover:text-black"
             >
@@ -69,7 +70,7 @@ function Navbar() {
         </form>
 
         {/* Error Message */}
-        {error && <div className="text-red-500 text-sm absolute top-2">{error}</div>}
+        {error && <div className="text-red-500  text-xl absolute top-10">{error}</div>}
 
         </div>
 

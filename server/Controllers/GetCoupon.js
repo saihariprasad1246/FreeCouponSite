@@ -147,7 +147,7 @@ export const fetchCategoryCoupons=async(req,res)=>{
 
 
         const limit = 10; // Define the number of coupons to return per page
-        const [startIndex,endIndex]=getIndexs(parseInt(pageNo),limit)
+        const [startIndex,endIndex]=getIndexes(parseInt(pageNo),limit)
 
 
         const coupons = await Coupon.find(
@@ -159,7 +159,7 @@ export const fetchCategoryCoupons=async(req,res)=>{
         //const coupons = await Coupon.find({category},{name:1,category:1,imgSrc:1,imgAlt:1,description:1}).sort({ createdAt: -1 }); // Fixed query logic
 
               console.log(coupons)
-        if(coupons.length<startIndex || Coupons.length==0){
+        if(coupons.length<startIndex || coupons.length==0){
            return  res.status(200).json({
             status:"failed",
             message:"No more coupons to display",
